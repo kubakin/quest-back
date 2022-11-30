@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+#  rabbitmq:
+#    hostname: rabbitmq
+#    image: rabbitmq:3-management-alpine
+#    container_name: network-rabbitmq
+#    ports:
+#      - '127.0.0.1:5672:5672'
+#      - '127.0.0.1:15672:15672'
+#  redis:
+#    hostname: redis
+#    container_name: network-redis
+#    image: redis:latest
+#    ports:
+#      - '127.0.0.1:6379:6379'
+  db:
+    hostname: db
+    container_name: quest-db
+    image: postgres:12.2-alpine
+    command: ["postgres", "-c", "log_statement=all"]
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: app
+    ports:
+      - '127.0.0.1:3035:5432'
+

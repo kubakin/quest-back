@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Game } from './auto/entities/game';
+import { GenericModule } from './infra/generic.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    GenericModule.forRoot({
+      db: {
+        entities: [Game],
+        prefix: 'quest',
+        synchronize: true,
+        repositories: [],
+      },
+    }),
+  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
